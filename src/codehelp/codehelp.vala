@@ -45,7 +45,10 @@ namespace Vls.CodeHelp {
         return true;
     }
 
-    public string get_expression_representation (Vala.Expression expr) {
+    /**
+     * Gets the full source of a code node that was parsed.
+     */
+    public string get_code_node_representation (Vala.CodeNode expr) {
         if (expr is Vala.Literal)
             return expr.to_string ();
         var sr = expr.source_reference;
@@ -310,7 +313,7 @@ namespace Vls.CodeHelp {
 
             if (param.initializer != null && show_initializers) {
                 builder.append (" = ");
-                builder.append (get_expression_representation (param.initializer));
+                builder.append (get_code_node_representation (param.initializer));
             }
 
             i++;
@@ -364,10 +367,10 @@ namespace Vls.CodeHelp {
             }
             if (foreach_statement != null && variable_sym.name == foreach_statement.variable_name) {
                 builder.append (" in ");
-                builder.append (get_expression_representation (foreach_statement.collection));
+                builder.append (get_code_node_representation (foreach_statement.collection));
             } else {
                 builder.append (" = ");
-                builder.append (get_expression_representation (variable_sym.initializer));
+                builder.append (get_code_node_representation (variable_sym.initializer));
             }
         }
         return builder.str;       
@@ -426,7 +429,7 @@ namespace Vls.CodeHelp {
         }
         if (property_sym.initializer != null && show_initializer) {
             builder.append (" default = ");
-            builder.append (get_expression_representation (property_sym.initializer));
+            builder.append (get_code_node_representation (property_sym.initializer));
             builder.append_c (';');
         }
         builder.append (" }");
@@ -450,7 +453,7 @@ namespace Vls.CodeHelp {
         builder.append (get_symbol_name_representation (constant_sym, scope));
         if (constant_sym.value != null && show_initializer) {
             builder.append (" = ");
-            builder.append (get_expression_representation (constant_sym.value));
+            builder.append (get_code_node_representation (constant_sym.value));
         }
         return builder.str;
     }

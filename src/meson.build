@@ -6,6 +6,7 @@ vls_src = files([
   'codehelp/find_symbol.vala',
   'codehelp/signaturehelpengine.vala',
   'codehelp/symbolextractor.vala',
+  'codehelp/symbolreferences.vala',
   'documentation/cnamemapper.vala',
   'documentation/doccomment.vala',
   'projects/buildtarget.vala',

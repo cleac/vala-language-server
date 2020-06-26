@@ -1070,7 +1070,7 @@ namespace Vls.CompletionEngine {
                 scope,
                 CompletionItemKind.Property,
                 (atype.fixed_length && atype.length != null ? 
-                    new DocComment (@"(= $(CodeHelp.get_expression_representation (atype.length)))") : null)));
+                    new DocComment (@"(= $(CodeHelp.get_code_node_representation (atype.length)))") : null)));
         foreach (string method_name in new string[] {"copy", "move", "resize"}) {
             var method = atype.get_member (method_name);
             if (method != null)
